@@ -1,6 +1,8 @@
 package cropcert.pages.page;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.json.JSONException;
 
@@ -24,6 +26,14 @@ public class PageService extends AbstractService<Page> {
 	public Page save(String jsonString)
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 		Page page = objectMappper.readValue(jsonString, Page.class);
+		
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		if(page.getCreatedOn() == null)
+			page.setCreatedOn(timestamp);
+		if(page.getModifiedOn() == null)
+			page.setModifiedOn(timestamp);
+		page.setDeleted(false);
+		
 		page = save(page);
 		return page;
 	}
