@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -35,6 +36,18 @@ public class PageService extends AbstractService<Page> {
 		page.setDeleted(false);
 		
 		page = save(page);
+		return page;
+	}
+
+	public Page upateParent(String jsonString) throws JSONException {
+		JSONObject jsonObject = new JSONObject(jsonString);
+        Long id = jsonObject.getLong("id");
+        Page page = findById(id);
+        
+        Long parentId = jsonObject.getLong("parentId");
+        page.setParentId(parentId);
+        
+        page = update(page);
 		return page;
 	}
 }
