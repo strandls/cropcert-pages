@@ -74,6 +74,7 @@ public class PageEndPoint {
 	}
 	
 	@PUT
+	@Path("parent")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateParent(String jsonString) {
