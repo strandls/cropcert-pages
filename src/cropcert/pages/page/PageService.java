@@ -33,7 +33,7 @@ public class PageService extends AbstractService<Page> {
 			page.setCreatedOn(timestamp);
 		if(page.getModifiedOn() == null)
 			page.setModifiedOn(timestamp);
-		page.setDeleted(false);
+		page.setIsDeleted(false);
 		
 		page = save(page);
 		return page;
