@@ -50,4 +50,24 @@ public class PageService extends AbstractService<Page> {
         page = update(page);
 		return page;
 	}
+
+	public Page upatePage(String jsonString) throws JSONException {
+		JSONObject jsonObject = new JSONObject(jsonString);
+        Long id = jsonObject.getLong("id");
+        Page page = findById(id);
+        
+        Long parentId  = jsonObject.getLong("parentId");
+        String title   = jsonObject.getString("title");
+        String content = jsonObject.getString("content");
+        
+        if(parentId != null)
+        	page.setParentId(parentId);
+        if(title != null)
+        	page.setTitle(title);
+        if(content != null)
+        	page.setContent(content);
+        
+        page = update(page);
+		return page;
+	}
 }

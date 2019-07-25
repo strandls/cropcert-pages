@@ -86,4 +86,18 @@ public class PageEndPoint {
 		}
 		return Response.status(Status.NO_CONTENT).build();
 	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updatePage(String jsonString) {
+		Page page;
+		try {
+			page = pageService.upatePage(jsonString);
+			return Response.status(Status.CREATED).entity(page).build();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return Response.status(Status.NO_CONTENT).build();
+	}
 }
