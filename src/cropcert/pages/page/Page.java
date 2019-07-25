@@ -33,97 +33,98 @@ public class Page implements Serializable {
 
     @Column(name = "parent_id")
     private Long parentId;
-    
+
     @Column(name = "title")
     private String title;
-    
+
     @Column(name = "author_id")
     private Long authorId;
-    
+
     @Column(name = "author_name")
     private String authorName;
-    
+
     @Column(name = "content")
     private String content;
-    
+
     @Column(name = "created_on")
     private Timestamp createdOn;
-    
+
     @Column(name = "modified_on")
     private Timestamp modifiedOn;
-    
+
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getParentId() {
-		return parentId;
-	}
+    public Long getParentId() {
+        return parentId;
+    }
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public Long getAuthorId() {
-		return authorId;
-	}
+    public Long getAuthorId() {
+        return authorId;
+    }
 
-	public void setAuthorId(Long authorId) {
-		this.authorId = authorId;
-	}
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
 
-	public String getAuthorName() {
-		return authorName;
-	}
+    public String getAuthorName() {
+        return authorName;
+    }
 
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public Timestamp getCreatedOn() {
-		return createdOn;
-	}
+    public Timestamp getCreatedOn() {
+        return createdOn;
+    }
 
-	public void setCreatedOn(Timestamp createdOn) {
-		this.createdOn = createdOn;
-	}
+    public void setCreatedOn(Timestamp createdOn) {
+        this.createdOn = createdOn;
+    }
 
-	public Timestamp getModifiedOn() {
-		return modifiedOn;
-	}
+    public Timestamp getModifiedOn() {
+        return modifiedOn;
+    }
 
-	public void setModifiedOn(Timestamp modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
+    public void setModifiedOn(Timestamp modifiedOn) {
+        this.modifiedOn = modifiedOn;
+    }
 
-	public boolean isDeleted() {
-		return isDeleted;
-	}
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
 
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
 }
