@@ -1,6 +1,6 @@
 package cropcert.pages.image;
 
-import java.io.FileNotFoundException;
+import com.google.common.io.Files;
 import java.io.InputStream;
 import java.util.Map;
 
@@ -18,38 +18,48 @@ import javax.ws.rs.core.Response;
 import com.google.inject.Inject;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.StreamingOutput;
 
 @Path("image")
 public class ImageEndPoint {
-	
-	@Inject
-	private ImageService imageService;
-	
-	@GET
-	@Path("{image}")
-	@Consumes(MediaType.TEXT_PLAIN)
-	public Response getImage(@PathParam("image") String image) {        
-        InputStream fileStream;
-		try {
-			fileStream = imageService.getImage(image);
-			return Response
-					.ok(fileStream, MediaType.APPLICATION_OCTET_STREAM)
-					.header("content-disposition","attachment; filename = "+image)
-					.build();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response addImage(@Context HttpServletRequest request,
-			@FormDataParam("file") InputStream inputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetails) {
-		Map<String, Object> result = imageService.addImage(inputStream, fileDetails, request);
-		return Response.ok(result).build();
-	}
+    @Inject
+    private ImageService imageService;
+
+    @GET
+    @Path("{image}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response getImage(@PathParam("image") String image) {
+        try {
+            InputStream is = imageService.getImage(image)
+            return Response.ok(new StreamingOutput() {
+                @Override
+                public void write(OutputStream out) throws IOException, WebApplicationException {
+                    byte[] buf = new byte[8192];
+                    int c;
+                    while ((c = is.read(buf, 0, buf.length)) > 0) {
+                        out.write(buf, 0, c);
+                        out.flush();
+                    }
+                    out.close();
+                }
+            }).type("image/" + Files.getFileExtension(image)).build();
+        } catch (IOException ex) {
+            out.close();
+        }
+        return null;
+    }
+
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addImage(@Context HttpServletRequest request,
+            @FormDataParam("upload") InputStream inputStream,
+            @FormDataParam("upload") FormDataContentDisposition fileDetails) {
+        Map<String, Object> result = imageService.addImage(inputStream, fileDetails, request);
+        return Response.ok(result).build();
+    }
 }
