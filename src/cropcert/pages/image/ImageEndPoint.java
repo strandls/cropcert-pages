@@ -34,7 +34,7 @@ public class ImageEndPoint {
     @Consumes(MediaType.TEXT_PLAIN)
     public Response getImage(@PathParam("image") String image) {
         try {
-            InputStream is = imageService.getImage(image)
+            InputStream is = imageService.getImage(image);
             return Response.ok(new StreamingOutput() {
                 @Override
                 public void write(OutputStream out) throws IOException, WebApplicationException {
@@ -48,7 +48,6 @@ public class ImageEndPoint {
                 }
             }).type("image/" + Files.getFileExtension(image)).build();
         } catch (IOException ex) {
-            out.close();
         }
         return null;
     }
