@@ -8,7 +8,7 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<!-- <session-config>
+	<session-config>
 		<session-timeout>600</session-timeout>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
@@ -17,7 +17,7 @@
 		<location>/error.jsp</location>
 	</error-page>
 
-	<filter>
+	<!-- <filter>
 		<filter-name>SingleSignOutFilter</filter-name>
 		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
 		<init-param>
