@@ -32,7 +32,7 @@ public class ImageService {
 		
 		if (uploaded) {
 			String uri = request.getRequestURI() + "/" + fileName;
-			result.put("uri", uri);
+			result.put("url", uri);
 		} else {
 			result.put("error", "enable to upload image");
 		}
