@@ -9,7 +9,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,8 +24,9 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
-import cropcert.pages.image.ImageModule;
-import cropcert.pages.page.PageModule;
+import cropcert.pages.api.APIModule;
+import cropcert.pages.dao.DaoModule;
+import cropcert.pages.service.ServiceModule;
 
 public class CMSServletContextListener extends GuiceServletContextListener {
 
@@ -49,12 +52,14 @@ public class CMSServletContextListener extends GuiceServletContextListener {
 				
 				bind(SessionFactory.class).toInstance(sessionFactory);
 				bind(ObjectMapper.class).in(Scopes.SINGLETON);
-				bind(Ping.class).in(Scopes.SINGLETON);
-				bind(Logout.class).in(Scopes.SINGLETON);
 				
-				serve("/*").with(GuiceContainer.class);
+				Map<String, String> props = new HashMap<String, String>();
+				props.put("javax.ws.rs.Application", MyApplication.class.getName());
+				props.put("jersey.config.server.wadl.disableWadl", "true");
+				
+				serve("/api/*").with(GuiceContainer.class, props);
 			}
-		}, new PageModule(), new ImageModule());
+		}, new APIModule(), new ServiceModule(), new DaoModule());
 		
 		return injector; 
 	}

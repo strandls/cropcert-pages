@@ -1,7 +1,9 @@
-package cropcert.pages.common;
+package cropcert.pages.service;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
+import cropcert.pages.dao.AbstractDao;
 
 
 public abstract class  AbstractService<T> {

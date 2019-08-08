@@ -1,4 +1,4 @@
-package cropcert.pages;
+package cropcert.pages.api;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;

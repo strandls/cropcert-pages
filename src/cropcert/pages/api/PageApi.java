@@ -1,4 +1,4 @@
-package cropcert.pages.page;
+package cropcert.pages.api;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,14 +23,18 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.inject.Inject;
 
-@Path("page")
-public class PageEndPoint {
+import cropcert.pages.model.Page;
+import cropcert.pages.service.PageService;
+import io.swagger.annotations.Api;
 
+@Path("page")
+@Api("Page")
+public class PageApi {
 	
 	private PageService pageService;
 	
 	@Inject
-	public PageEndPoint(PageService batchProductionService) {
+	public PageApi(PageService batchProductionService) {
 		this.pageService = batchProductionService;
 	}
 	

@@ -1,4 +1,4 @@
-package cropcert.pages.page;
+package cropcert.pages.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

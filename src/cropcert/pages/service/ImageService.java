@@ -1,4 +1,4 @@
-package cropcert.pages.image;
+package cropcert.pages.service;
 
 import java.io.File;
 import java.io.FileInputStream;

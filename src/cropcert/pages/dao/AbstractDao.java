@@ -1,4 +1,4 @@
-package cropcert.pages.common;
+package cropcert.pages.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

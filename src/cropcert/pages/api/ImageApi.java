@@ -1,4 +1,4 @@
-package cropcert.pages.image;
+package cropcert.pages.api;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -19,8 +19,12 @@ import com.google.inject.Inject;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
+import cropcert.pages.service.ImageService;
+import io.swagger.annotations.Api;
+
 @Path("image")
-public class ImageEndPoint {
+@Api("Image upload")
+public class ImageApi {
 	
 	@Inject
 	private ImageService imageService;

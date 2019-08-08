@@ -1,11 +1,11 @@
-package cropcert.pages.page;
+package cropcert.pages.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.google.inject.Inject;
 
-import cropcert.pages.common.AbstractDao;
+import cropcert.pages.model.Page;
 
 public class PageDao extends AbstractDao<Page, Long>{
 

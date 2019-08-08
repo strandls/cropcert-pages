@@ -1,4 +1,4 @@
-package cropcert.pages.page;
+package cropcert.pages.service;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -12,7 +12,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
 
-import cropcert.pages.common.AbstractService;
+import cropcert.pages.dao.PageDao;
+import cropcert.pages.model.Page;
 
 public class PageService extends AbstractService<Page> {
 
