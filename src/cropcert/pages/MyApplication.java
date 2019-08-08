@@ -24,7 +24,7 @@ public class MyApplication extends Application{
 		beanConfig.setTitle("Cropcert pages module microServices");
 		beanConfig.setSchemes(new String[] { "http" });
 		beanConfig.setHost("localhost:8080");
-		beanConfig.setBasePath("/cropcert-pages/api");
+		beanConfig.setBasePath("/pages/api");
 		beanConfig.setResourcePackage("cropcert.pages");
 		beanConfig.setPrettyPrint(true);
 		beanConfig.setScan(true);
