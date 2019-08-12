@@ -9,6 +9,5 @@ public class APIModule extends AbstractModule {
 	protected void configure() {
 		bind(ImageApi.class).in(Scopes.SINGLETON);
 		bind(PageApi.class).in(Scopes.SINGLETON);
-		bind(Logout.class).in(Scopes.SINGLETON);
 	}
 }

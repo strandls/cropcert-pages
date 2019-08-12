@@ -26,6 +26,7 @@ import com.google.inject.Inject;
 import cropcert.pages.model.Page;
 import cropcert.pages.service.PageService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Path("page")
 @Api("Page")
@@ -42,6 +43,9 @@ public class PageApi {
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(
+			value = "Get the page by its id",
+			response = Page.class)
 	public Response find(@PathParam("id") Long id) {
 		Page page = pageService.findById(id);
 		return Response.status(Status.CREATED).entity(page).build();
@@ -50,6 +54,9 @@ public class PageApi {
 	@Path("all")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(
+			value = "Get list of all the pages",
+			response = List.class)
 	public List<Page> findAll(
 			@DefaultValue("-1") @QueryParam("limit") Integer limit,
 			@DefaultValue("-1") @QueryParam("offset") Integer offset) {
@@ -62,6 +69,9 @@ public class PageApi {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(
+			value = "Save the page",
+			response = Page.class)
 	public Response save(String  jsonString) {
 		try {
 			Page page = pageService.save(jsonString);
@@ -81,6 +91,9 @@ public class PageApi {
 	@Path("parent")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(
+			value = "Update the parent of the page",
+			response = Page.class)
 	public Response updateParent(String jsonString) {
 		Page page;
 		try {
@@ -95,6 +108,9 @@ public class PageApi {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(
+			value = "Update the page itself",
+			response = Page.class)
 	public Response updatePage(String jsonString) {
 		Page page;
 		try {

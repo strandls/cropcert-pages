@@ -1,7 +1,8 @@
 package cropcert.pages.api;
 
-import com.google.common.io.Files;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +12,20 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 
+import com.google.common.io.Files;
 import com.google.inject.Inject;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
-import java.io.IOException;
-import java.io.OutputStream;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.StreamingOutput;
 
 import cropcert.pages.service.ImageService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Path("image")
 @Api
@@ -36,6 +37,9 @@ public class ImageApi {
     @GET
     @Path("{image}")
     @Consumes(MediaType.TEXT_PLAIN)
+    @ApiOperation(
+			value = "Get the image by url",
+			response = StreamingOutput.class)
     public Response getImage(@PathParam("image") String image) {
         try {
             InputStream is = imageService.getImage(image);
@@ -59,6 +63,9 @@ public class ImageApi {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(
+			value = "Save the image from inputStream",
+			response = Map.class)
     public Response addImage(@Context HttpServletRequest request,
             @FormDataParam("upload") InputStream inputStream,
             @FormDataParam("upload") FormDataContentDisposition fileDetails) {
