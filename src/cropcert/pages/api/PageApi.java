@@ -26,10 +26,15 @@ import com.google.inject.Inject;
 import cropcert.pages.model.Page;
 import cropcert.pages.service.PageService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @Path("page")
 @Api("Page")
+@ApiImplicitParams({
+    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
+                      required = true, dataType = "string", paramType = "header") })
 public class PageApi {
 	
 	private PageService pageService;

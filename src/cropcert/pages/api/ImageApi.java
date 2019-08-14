@@ -25,10 +25,15 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import cropcert.pages.service.ImageService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @Path("image")
-@Api
+@Api("Image")
+@ApiImplicitParams({
+    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
+                      required = true, dataType = "string", paramType = "header") })
 public class ImageApi {
 
     @Inject
