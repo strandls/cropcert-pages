@@ -2,7 +2,7 @@
 
 Pages API for Cropcert
 
-[![Build Status](https://travis-ci.com/strandls/cropcert-users.svg?branch=master)](https://travis-ci.com/strandls/cropcert-users)
+[![Build Status](https://travis-ci.com/strandls/cropcert-pages.svg?branch=master)](https://travis-ci.com/strandls/cropcert-pages)
 
 ## 🚀 Quick start
 
