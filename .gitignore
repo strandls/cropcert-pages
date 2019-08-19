@@ -16,3 +16,4 @@ out/
 /dependencies.xml
 .java-version
 WebContent/META-INF/MANIFEST.MF
+.vscode
