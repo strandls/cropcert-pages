@@ -61,14 +61,17 @@ public class PageApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(
 			value = "Get list of all the pages",
-			response = List.class)
-	public List<Page> findAll(
+			response = Page.class,
+			responseContainer = "List")
+	public Response findAll(
 			@DefaultValue("-1") @QueryParam("limit") Integer limit,
 			@DefaultValue("-1") @QueryParam("offset") Integer offset) {
+		List<Page> pages;
 		if(limit==-1 || offset ==-1)
-			return pageService.findAll();
+			pages = pageService.findAll();
 		else
-			return pageService.findAll(limit, offset);
+			pages = pageService.findAll(limit, offset);
+		return Response.ok().entity(pages).build();
 	}
 	
 	@POST
