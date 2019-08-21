@@ -17,3 +17,4 @@ out/
 .java-version
 WebContent/META-INF/MANIFEST.MF
 .vscode
+deployOnVenus.sh
