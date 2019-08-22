@@ -32,9 +32,6 @@ import io.swagger.annotations.ApiOperation;
 
 @Path("page")
 @Api("Page")
-@ApiImplicitParams({
-    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
-                      required = true, dataType = "string", paramType = "header") })
 public class PageApi {
 	
 	private PageService pageService;
@@ -80,6 +77,9 @@ public class PageApi {
 	@ApiOperation(
 			value = "Save the page",
 			response = Page.class)
+	@ApiImplicitParams({
+	    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
+	                      required = true, dataType = "string", paramType = "header") })
 	public Response save(String  jsonString) {
 		try {
 			Page page = pageService.save(jsonString);
@@ -102,6 +102,9 @@ public class PageApi {
 	@ApiOperation(
 			value = "Update the parent of the page",
 			response = Page.class)
+	@ApiImplicitParams({
+	    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
+	                      required = true, dataType = "string", paramType = "header") })
 	public Response updateParent(String jsonString) {
 		Page page;
 		try {
@@ -119,6 +122,9 @@ public class PageApi {
 	@ApiOperation(
 			value = "Update the page itself",
 			response = Page.class)
+	@ApiImplicitParams({
+	    @ApiImplicitParam(name = "Authorization", value = "Authorization token", 
+	                      required = true, dataType = "string", paramType = "header") })
 	public Response updatePage(String jsonString) {
 		Page page;
 		try {
