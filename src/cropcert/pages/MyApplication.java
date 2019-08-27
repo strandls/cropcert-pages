@@ -20,19 +20,6 @@ public class MyApplication extends Application{
 	
 	public static final Logger logger = LoggerFactory.getLogger(MyApplication.class);
 	
-	public static final String JWT_SALT;
-
-	static {
-		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties");
-		Properties properties = new Properties();
-		try {
-			properties.load(in);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		JWT_SALT = properties.getProperty("jwtSalt", "12345678901234567890123456789012");
-	}
-
 	public MyApplication() {
 
 		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties");

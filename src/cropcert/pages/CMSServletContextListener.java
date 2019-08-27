@@ -26,6 +26,7 @@ import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
 import cropcert.pages.api.APIModule;
 import cropcert.pages.dao.DaoModule;
+import cropcert.pages.filter.FilterModule;
 import cropcert.pages.service.ServiceModule;
 
 public class CMSServletContextListener extends GuiceServletContextListener {
@@ -59,7 +60,7 @@ public class CMSServletContextListener extends GuiceServletContextListener {
 				
 				serve("/api/*").with(GuiceContainer.class, props);
 			}
-		}, new APIModule(), new ServiceModule(), new DaoModule());
+		}, new APIModule(), new ServiceModule(), new DaoModule(), new FilterModule());
 		
 		return injector; 
 	}

@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.StreamingOutput;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 
@@ -60,10 +62,28 @@ public class ImageService {
 		return false;
 	}
 
-	public InputStream getImage(String image) throws FileNotFoundException {
+	public StreamingOutput getImage(String image) throws FileNotFoundException {
 		
 		String fileLocation = rootPath + File.separatorChar + image;
 		InputStream in = new FileInputStream(new File(fileLocation));
-        return in;
+		
+		StreamingOutput streamingOutput = new StreamingOutput() {
+            @Override
+            public void write(OutputStream out) throws IOException, WebApplicationException {
+                byte[] buf = new byte[8192];
+                int c;
+                while ((c = in.read(buf, 0, buf.length)) > 0) {
+                    out.write(buf, 0, c);
+                    out.flush();
+                }
+                out.close();
+            }
+        };
+        try {
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        return streamingOutput;
 	}
 }
