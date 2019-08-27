@@ -47,7 +47,7 @@ public class PageApi {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Get the page by its id", response = Page.class)
-	public Response find(@PathParam("id") Long id) {
+	public Response find(@Context HttpServletRequest request, @PathParam("id") Long id) {
 		Page page = pageService.findById(id);
 		return Response.status(Status.CREATED).entity(page).build();
 	}

@@ -37,7 +37,7 @@ public class ImageApi {
 	@Path("{image}")
 	@Consumes(MediaType.TEXT_PLAIN)
 	@ApiOperation(value = "Get the image by url", response = StreamingOutput.class)
-	public Response getImage(@PathParam("image") String image) {
+	public Response getImage(@Context HttpServletRequest request, @PathParam("image") String image) {
 		StreamingOutput sout;
 		try {
 			sout = imageService.getImage(image);
