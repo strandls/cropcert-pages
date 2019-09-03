@@ -33,6 +33,9 @@ public class Page implements Serializable {
 
     @Column(name = "parent_id")
     private Long parentId;
+    
+    @Column(name = "page_index")
+    private int pageIndex;
 
     @Column(name = "title")
     private String title;
@@ -58,7 +61,6 @@ public class Page implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,15 +68,20 @@ public class Page implements Serializable {
     public Long getParentId() {
         return parentId;
     }
-
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+    
+    public int getPageIndex() {
+		return pageIndex;
+	}
+    public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
 
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -82,7 +89,6 @@ public class Page implements Serializable {
     public Long getAuthorId() {
         return authorId;
     }
-
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
@@ -90,7 +96,6 @@ public class Page implements Serializable {
     public String getAuthorName() {
         return authorName;
     }
-
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
@@ -98,7 +103,6 @@ public class Page implements Serializable {
     public String getContent() {
         return content;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
@@ -106,7 +110,6 @@ public class Page implements Serializable {
     public Timestamp getCreatedOn() {
         return createdOn;
     }
-
     public void setCreatedOn(Timestamp createdOn) {
         this.createdOn = createdOn;
     }
@@ -114,7 +117,6 @@ public class Page implements Serializable {
     public Timestamp getModifiedOn() {
         return modifiedOn;
     }
-
     public void setModifiedOn(Timestamp modifiedOn) {
         this.modifiedOn = modifiedOn;
     }
@@ -122,9 +124,7 @@ public class Page implements Serializable {
     public Boolean getIsDeleted() {
         return isDeleted;
     }
-
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-
 }
