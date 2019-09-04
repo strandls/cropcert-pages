@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +37,8 @@ public class PageService extends AbstractService<Page> {
 			page.setModifiedOn(timestamp);
 		page.setIsDeleted(false);
 		
+		page.setPageIndex(page.getId());
+		
 		page = save(page);
 		return page;
 	}
@@ -67,5 +70,21 @@ public class PageService extends AbstractService<Page> {
         
         page = update(page);
 		return page;
+	}
+
+	public void updateTreeStructure(String jsonString) throws JSONException {
+		JSONArray jsonArray = new JSONArray(jsonString);
+		for(int i = 0; i < jsonArray.length(); i++) {
+			JSONObject object = (JSONObject) jsonArray.get(i);
+			
+			Long id        = object.getLong("id");
+			Long parentId  = object.getLong("parentId");
+			Long pageIndex = object.getLong("pageIndex");
+			
+			Page page = findById(id);
+			page.setParentId(parentId);
+			page.setPageIndex(pageIndex);
+			update(page);
+		}
 	}
 }

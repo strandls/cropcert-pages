@@ -12,6 +12,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,7 +30,7 @@ public class Page implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "page_id_generator")
-    @SequenceGenerator(name = "batch_id_generator", sequenceName = "page_id_seq", allocationSize = 50)
+    @SequenceGenerator(name = "page_id_generator", sequenceName = "page_id_seq", allocationSize = 50)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
@@ -35,10 +38,13 @@ public class Page implements Serializable {
     private Long parentId;
     
     @Column(name = "page_index")
-    private int pageIndex;
+    private Long pageIndex;
 
     @Column(name = "title")
     private String title;
+    
+    @Column(name = "heading")
+    private String heading;
 
     @Column(name = "author_id")
     private Long authorId;
@@ -47,6 +53,7 @@ public class Page implements Serializable {
     private String authorName;
 
     @Column(name = "content")
+    @Type(type = "text")
     private String content;
 
     @Column(name = "created_on")
@@ -55,6 +62,7 @@ public class Page implements Serializable {
     @Column(name = "modified_on")
     private Timestamp modifiedOn;
 
+    @JsonIgnore
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private Boolean isDeleted;
 
@@ -72,10 +80,10 @@ public class Page implements Serializable {
         this.parentId = parentId;
     }
     
-    public int getPageIndex() {
+    public Long getPageIndex() {
 		return pageIndex;
 	}
-    public void setPageIndex(int pageIndex) {
+    public void setPageIndex(Long pageIndex) {
 		this.pageIndex = pageIndex;
 	}
 
@@ -85,6 +93,13 @@ public class Page implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+    
+    public String getHeading() {
+		return heading;
+	}
+    public void setHeading(String heading) {
+		this.heading = heading;
+	}
 
     public Long getAuthorId() {
         return authorId;

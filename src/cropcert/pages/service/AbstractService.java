@@ -54,15 +54,6 @@ public abstract class  AbstractService<T> {
 			throw re;
 		}
 	}
-
-	public List<T> findAll(int limit, int offset) {
-		try {
-			List<T> entities = this.dao.findAll(limit, offset);
-			return entities;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
 	
 	public List<T> findAll() {
 		
