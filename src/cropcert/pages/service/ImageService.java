@@ -1,8 +1,6 @@
 package cropcert.pages.service;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,79 +9,53 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.StreamingOutput;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 
 public class ImageService {
-	
-	public final static String rootPath = System.getProperty("user.home") + 
-			File.separatorChar + "cropcert-image";
 
-	public Map<String, Object> addImage(InputStream inputStream, FormDataContentDisposition fileDetails,
-			HttpServletRequest request) {
-		String fileName = fileDetails.getFileName();
+    public final static String rootPath = System.getProperty("user.home")
+            + File.separatorChar + "cropcert-image";
 
-		String fileLocation = rootPath + File.separatorChar + fileName;
+    public Map<String, Object> addImage(InputStream inputStream, FormDataContentDisposition fileDetails,
+            HttpServletRequest request) {
+        String fileName = fileDetails.getFileName();
 
-		boolean uploaded = writeToFile(inputStream, fileLocation);
+        String fileLocation = rootPath + File.separatorChar + fileName;
 
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("uploaded", uploaded);
-		
-		if (uploaded) {
-			String uri = request.getRequestURI() + "/" + fileName;
-			result.put("url", uri);
-		} else {
-			result.put("error", "enable to upload image");
-		}
-		return result;
-	}
+        boolean uploaded = writeToFile(inputStream, fileLocation);
 
-	private boolean writeToFile(InputStream inputStream, String fileLocation) {
-		try {
-			OutputStream out = new FileOutputStream(new File(fileLocation));
-			int read = 0;
-			byte[] bytes = new byte[1024];
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("uploaded", uploaded);
 
-			out = new FileOutputStream(new File(fileLocation));
-			while ((read = inputStream.read(bytes)) != -1) {
-				out.write(bytes, 0, read);
-			}
-			out.flush();
-			out.close();
+        if (uploaded) {
+            String uri = request.getRequestURI() + "/" + fileName;
+            result.put("url", uri);
+        } else {
+            result.put("error", "enable to upload image");
+        }
+        return result;
+    }
 
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-
-		}
-		return false;
-	}
-
-	public StreamingOutput getImage(String image) throws FileNotFoundException {
-		
-		String fileLocation = rootPath + File.separatorChar + image;
-		InputStream in = new FileInputStream(new File(fileLocation));
-		
-		StreamingOutput streamingOutput = new StreamingOutput() {
-            @Override
-            public void write(OutputStream out) throws IOException, WebApplicationException {
-                byte[] buf = new byte[8192];
-                int c;
-                while ((c = in.read(buf, 0, buf.length)) > 0) {
-                    out.write(buf, 0, c);
-                    out.flush();
-                }
-                out.close();
-            }
-        };
+    private boolean writeToFile(InputStream inputStream, String fileLocation) {
         try {
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        return streamingOutput;
-	}
+            OutputStream out = new FileOutputStream(new File(fileLocation));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            out = new FileOutputStream(new File(fileLocation));
+            while ((read = inputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            out.flush();
+            out.close();
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        return false;
+    }
+
 }
