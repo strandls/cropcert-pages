@@ -44,6 +44,7 @@ public class Page implements Serializable {
     private String title;
     
     @Column(name = "heading")
+    @Type(type = "text")
     private String heading;
 
     @Column(name = "author_id")
