@@ -42,7 +42,8 @@ public class PageDao extends AbstractDao<Page, Long>{
 						.add(Projections.property("id"), "id")
 						.add(Projections.property("parentId"), "parentId")
 						.add(Projections.property("pageIndex"), "pageIndex")
-						.add(Projections.property("title"), "title"))
+						.add(Projections.property("title"), "title")
+						.add(Projections.property("isDeleted"), "isDeleted"))
 				.setResultTransformer(Transformers.aliasToBean(PageModel.class));
 		return cr.list();
 	}

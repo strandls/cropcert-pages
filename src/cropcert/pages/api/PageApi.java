@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -130,5 +131,18 @@ public class PageApi {
 			e.printStackTrace();
 		}
 		return Response.status(Status.NO_CONTENT).build();
+	}
+	
+	@Path("{id}")
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Delete the page", response = Page.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@TokenAndUserAuthenticated(permissions = { Permissions.ADMIN }) 
+	public Response markAsDeletePage(@Context HttpServletRequest request, @PathParam("id") Long id) {
+		Page page = pageService.markAsDelete(id);
+		return Response.ok().entity(page).build();
 	}
 }

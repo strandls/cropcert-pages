@@ -87,4 +87,11 @@ public class PageService extends AbstractService<Page> {
 			update(page);
 		}
 	}
+
+	public Page markAsDelete(Long id) {
+		Page page = findById(id);
+		page.setIsDeleted(true);
+		update(page);
+		return page;
+	}
 }
