@@ -61,12 +61,15 @@ public class PageService extends AbstractService<Page> {
         Page page = findById(id);
         
         String title   = jsonObject.getString("title");
+        String heading = jsonObject.getString("heading");
         String content = jsonObject.getString("content");
         
         if(title != null)
-        	page.setTitle(title);
+            page.setTitle(title);
         if(content != null)
-        	page.setContent(content);
+            page.setContent(content);
+        if(heading != null)
+            page.setHeading(heading);
         
         page = update(page);
 		return page;
