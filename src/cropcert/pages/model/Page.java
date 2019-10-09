@@ -43,8 +43,11 @@ public class Page implements Serializable {
     @Column(name = "title")
     private String title;
     
-    @Column(name = "pageType")
+    @Column(name = "page_type")
     private PageType pageType;
+    
+    @Column(name = "url")
+    private String url;
     
     @Column(name = "heading")
     @Type(type = "text")
@@ -103,6 +106,13 @@ public class Page implements Serializable {
 	}
     public void setPageType(PageType pageType) {
 		this.pageType = pageType;
+	}
+    
+    public String getUrl() {
+		return url;
+	}
+    public void setUrl(String url) {
+		this.url = url;
 	}
     
     public String getHeading() {

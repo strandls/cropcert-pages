@@ -10,6 +10,10 @@ public class PageModel {
 
     private String title;
     
+    private PageType pageType;
+    
+    private String url;
+    
     private Boolean isDeleted;
 
 	public Long getId() {
@@ -39,7 +43,21 @@ public class PageModel {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public PageType getPageType() {
+		return pageType;
+	}
+	public void setPageType(PageType pageType) {
+		this.pageType = pageType;
+	}
 
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
