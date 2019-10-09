@@ -43,6 +43,9 @@ public class Page implements Serializable {
     @Column(name = "title")
     private String title;
     
+    @Column(name = "pageType")
+    private PageType pageType;
+    
     @Column(name = "heading")
     @Type(type = "text")
     private String heading;
@@ -94,6 +97,13 @@ public class Page implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+    
+    public PageType getPageType() {
+		return pageType;
+	}
+    public void setPageType(PageType pageType) {
+		this.pageType = pageType;
+	}
     
     public String getHeading() {
 		return heading;
