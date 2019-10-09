@@ -15,6 +15,7 @@ import com.google.inject.Inject;
 
 import cropcert.pages.dao.PageDao;
 import cropcert.pages.model.Page;
+import cropcert.pages.model.PageType;
 
 public class PageService extends AbstractService<Page> {
 
@@ -63,6 +64,8 @@ public class PageService extends AbstractService<Page> {
         String title   = jsonObject.getString("title");
         String heading = jsonObject.getString("heading");
         String content = jsonObject.getString("content");
+        String url = jsonObject.getString("url");
+        String pageType = jsonObject.getString("pageType");
         
         if(title != null)
             page.setTitle(title);
@@ -70,6 +73,10 @@ public class PageService extends AbstractService<Page> {
             page.setContent(content);
         if(heading != null)
             page.setHeading(heading);
+        if(url != null)
+            page.setUrl(url);
+        if(pageType != null)
+            page.setPageType(PageType.fromValue(pageType));
         
         page = update(page);
 		return page;

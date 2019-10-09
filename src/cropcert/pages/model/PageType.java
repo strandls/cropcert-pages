@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 public enum PageType {
 
 	@XmlEnumValue("Content")
-	CONTENT("Content"),
+	CONTENT("CONTENT"),
 	@XmlEnumValue("Redirect")
-	REDIRECT("Redirect");
+	REDIRECT("REDIRECT");
 	
 	private String value;
 	
