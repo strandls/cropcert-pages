@@ -70,6 +70,9 @@ public class Page implements Serializable {
 	@Column(name = "content")
 	@Type(type = "text")
 	private String content;
+	
+	@Column(name = "description")
+	private String description;
 
 	@Column(name = "created_on")
 	private Timestamp createdOn;
@@ -167,6 +170,14 @@ public class Page implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Timestamp getCreatedOn() {
