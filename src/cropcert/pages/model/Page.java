@@ -17,6 +17,8 @@ import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModel;
+
 /**
  * 
  * @author vilay
@@ -26,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "page")
 @XmlRootElement
 @JsonIgnoreProperties
+@ApiModel("Page")
 public class Page implements Serializable {
 
 	/**
