@@ -17,150 +17,179 @@ import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * 
+ * @author vilay
+ *
+ */
 @Entity
 @Table(name = "page")
 @XmlRootElement
 @JsonIgnoreProperties
 public class Page implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -6287810889323128536L;
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -6287810889323128536L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "page_id_generator")
-    @SequenceGenerator(name = "page_id_generator", sequenceName = "page_id_seq", allocationSize = 50)
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "page_id_generator")
+	@SequenceGenerator(name = "page_id_generator", sequenceName = "page_id_seq", allocationSize = 50)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
 
-    @Column(name = "parent_id")
-    private Long parentId;
-    
-    @Column(name = "page_index")
-    private Long pageIndex;
+	@Column(name = "parent_id")
+	private Long parentId;
 
-    @Column(name = "title")
-    private String title;
-    
-    @Column(name = "page_type")
-    private PageType pageType;
-    
-    @Column(name = "url")
-    private String url;
-    
-    @Column(name = "heading")
-    @Type(type = "text")
-    private String heading;
+	@Column(name = "page_index")
+	private Long pageIndex;
 
-    @Column(name = "author_id")
-    private Long authorId;
+	@Column(name = "title")
+	private String title;
 
-    @Column(name = "author_name")
-    private String authorName;
+	@Column(name = "page_type")
+	private PageType pageType;
 
-    @Column(name = "content")
-    @Type(type = "text")
-    private String content;
+	@Column(name = "url")
+	private String url;
 
-    @Column(name = "created_on")
-    private Timestamp createdOn;
+	@Column(name = "banner_url")
+	private String bannerUrl;
 
-    @Column(name = "modified_on")
-    private Timestamp modifiedOn;
+	@Column(name = "heading")
+	@Type(type = "text")
+	private String heading;
 
-    @JsonIgnore
-    @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private Boolean isDeleted;
+	@Column(name = "author_id")
+	private Long authorId;
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "author_name")
+	private String authorName;
 
-    public Long getParentId() {
-        return parentId;
-    }
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-    
-    public Long getPageIndex() {
+	@Column(name = "content")
+	@Type(type = "text")
+	private String content;
+
+	@Column(name = "created_on")
+	private Timestamp createdOn;
+
+	@Column(name = "modified_on")
+	private Timestamp modifiedOn;
+
+	@JsonIgnore
+	@Column(name = "is_deleted", columnDefinition = "boolean default false")
+	private Boolean isDeleted;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public Long getPageIndex() {
 		return pageIndex;
 	}
-    public void setPageIndex(Long pageIndex) {
+
+	public void setPageIndex(Long pageIndex) {
 		this.pageIndex = pageIndex;
 	}
 
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public PageType getPageType() {
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public PageType getPageType() {
 		return pageType;
 	}
-    public void setPageType(PageType pageType) {
+
+	public void setPageType(PageType pageType) {
 		this.pageType = pageType;
 	}
-    
-    public String getUrl() {
+
+	public String getUrl() {
 		return url;
 	}
-    public void setUrl(String url) {
+
+	public void setUrl(String url) {
 		this.url = url;
 	}
-    
-    public String getHeading() {
+
+	public String getBannerUrl() {
+		return bannerUrl;
+	}
+
+	public void setBannerUrl(String bannerUrl) {
+		this.bannerUrl = bannerUrl;
+	}
+
+	public String getHeading() {
 		return heading;
 	}
-    public void setHeading(String heading) {
+
+	public void setHeading(String heading) {
 		this.heading = heading;
 	}
 
-    public Long getAuthorId() {
-        return authorId;
-    }
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
+	public Long getAuthorId() {
+		return authorId;
+	}
 
-    public String getAuthorName() {
-        return authorName;
-    }
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
+	public void setAuthorId(Long authorId) {
+		this.authorId = authorId;
+	}
 
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getAuthorName() {
+		return authorName;
+	}
 
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
 
-    public Timestamp getModifiedOn() {
-        return modifiedOn;
-    }
-    public void setModifiedOn(Timestamp modifiedOn) {
-        this.modifiedOn = modifiedOn;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Timestamp getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Timestamp createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public Timestamp getModifiedOn() {
+		return modifiedOn;
+	}
+
+	public void setModifiedOn(Timestamp modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }
