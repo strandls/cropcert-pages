@@ -66,6 +66,8 @@ public class PageService extends AbstractService<Page> {
         String content = jsonObject.getString("content");
         String url = jsonObject.getString("url");
         String pageType = jsonObject.getString("pageType");
+        String bannerUrl = jsonObject.getString("bannerUrl");
+        String description = jsonObject.getString("description");
         
         if(title != null)
             page.setTitle(title);
@@ -77,6 +79,10 @@ public class PageService extends AbstractService<Page> {
             page.setUrl(url);
         if(pageType != null)
             page.setPageType(PageType.fromValue(pageType));
+        if(bannerUrl != null)
+            page.setBannerUrl(bannerUrl);
+        if(description != null)
+            page.setDescription(description);
         
         page = update(page);
 		return page;
