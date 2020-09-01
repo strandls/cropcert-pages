@@ -61,28 +61,39 @@ public class PageService extends AbstractService<Page> {
         Long id = jsonObject.getLong("id");
         Page page = findById(id);
         
-        String title   = jsonObject.getString("title");
-        String heading = jsonObject.getString("heading");
-        String content = jsonObject.getString("content");
-        String url = jsonObject.getString("url");
-        String pageType = jsonObject.getString("pageType");
-        String bannerUrl = jsonObject.getString("bannerUrl");
-        String description = jsonObject.getString("description");
+        String title = null;
+        String heading = null;
+        String content = null;
+        String url = null;
+        String bannerUrl = null;
+        String pageType = null; 
+        String description = null;
         
-        if(title != null)
-            page.setTitle(title);
-        if(content != null)
-            page.setContent(content);
-        if(heading != null)
-            page.setHeading(heading);
-        if(url != null)
-            page.setUrl(url);
+        if(!jsonObject.isNull("title"))
+        	title   = jsonObject.getString("title");
+        if(!jsonObject.isNull("heading"))
+        	heading = jsonObject.getString("heading");
+        if(!jsonObject.isNull("content"))
+        	content = jsonObject.getString("content");
+        if(!jsonObject.isNull("url"))
+        	url = jsonObject.getString("url");
+        if(!jsonObject.isNull("bannerUrl"))
+        	bannerUrl = jsonObject.getString("bannerUrl");
+        if(!jsonObject.isNull("pageType"))
+        	pageType = jsonObject.getString("pageType");
+        if(!jsonObject.isNull("description"))
+        	description = jsonObject.getString("description");
+        
+        page.setTitle(title);
+        page.setContent(content);
+        page.setHeading(heading);
+        page.setUrl(url);
         if(pageType != null)
-            page.setPageType(PageType.fromValue(pageType));
-        if(bannerUrl != null)
-            page.setBannerUrl(bannerUrl);
-        if(description != null)
-            page.setDescription(description);
+        	page.setPageType(PageType.fromValue(pageType));
+        else
+        	page.setPageType(null);
+        page.setBannerUrl(bannerUrl);
+        page.setDescription(description);
         
         page = update(page);
 		return page;
