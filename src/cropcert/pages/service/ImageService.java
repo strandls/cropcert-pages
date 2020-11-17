@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,8 @@ public class ImageService {
     public Map<String, Object> addImage(InputStream inputStream, FormDataContentDisposition fileDetails,
             HttpServletRequest request) {
         String fileName = fileDetails.getFileName();
+        
+        fileName = UUID.randomUUID().toString() + "_" + fileName;
 
         String fileLocation = rootPath + File.separatorChar + fileName;
 
